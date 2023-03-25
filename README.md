@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Udacity MyReads Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+In the MyReads project, you'll create a bookshelf app that allows you to select and categorize books you have read, are currently reading, or want to read. The project emphasizes using React to build the application and provides an API server and client library that you will use to persist information as you interact with the application.
 
-In the project directory, you can run:
+## Installation Instructions
 
-### `npm start`
+### Clone the repository
+``` git
+git clone https://github.com/congdinh2008/udacity-myreads.git
+```
 
-Runs the app in the development mode.\
+### Go to the repository folder
+``` terminal
+cd udacity-myreads
+```
+
+### Install npm packages
+``` node
+npm i
+```
+
+### Run the project:
+
+``` node
+npm start
+```
+
+### Run the tests:
+
+``` node
+npm run test
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Build the project:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+```
+npm run build
+```
 
 Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Backend Server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
-### `npm run eject`
+- [`getAll`](#getall)
+- [`update`](#update)
+- [`search`](#search)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `getAll`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Method Signature:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+getAll();
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Returns a Promise which resolves to a JSON object containing a collection of book objects.
+- This collection represents the books currently in the bookshelves in your app.
 
-## Learn More
+### `update`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Method Signature:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+update(book, shelf);
+```
 
-### Code Splitting
+- book: `<Object>` containing at minimum an `id` attribute
+- shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
+- Returns a Promise which resolves to a JSON object containing the response data of the POST request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `search`
 
-### Analyzing the Bundle Size
+Method Signature:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+search(query);
+```
 
-### Making a Progressive Web App
+- query: `<String>`
+- Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
+- These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
